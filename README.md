@@ -72,4 +72,4 @@ This allows kubernetes to perform load balancing accross multiple sprout instanc
 Kubernetes services provide the pod/IP decoupling, 
 however there are open questions as to the RFC specifically in relation to the NAPTR/SRV records pertainining to load balancing.
 
-![clearwater-k8s-overview](https://raw.githubusercontent.com/Intel-Corp/clearwater-kubernertes/master/clearwater-k8s.png)
+![clearwater-k8s-overview](https://raw.githubusercontent.com/Intel-Corp/clearwater-kubernertes/master/docs/images/clearwater-k8s.png)
