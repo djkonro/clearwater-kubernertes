@@ -1,0 +1,13 @@
+USE homestead_cache;
+SET impi['1111111111@example.com']['_exists'] = '';
+SET impi['1111111111@example.com']['digest_ha1'] = 'bcce1af1bb8b6736661310edd6e77b2e';
+SET impi['1111111111@example.com']['digest_realm'] = 'example.com';
+SET impi['1111111111@example.com']['public_id_sip:1111111111@example.com'] = '';
+SET impu['sip:1111111111@example.com']['_exists'] = '';
+SET impu['sip:1111111111@example.com']['ims_subscription_xml'] = '<?xml version=\'1.0\' encoding=\'UTF-8\'?><IMSSubscription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CxDataType.xsd"><PrivateID>1111111111@example.com</PrivateID><ServiceProfile><InitialFilterCriteria><TriggerPoint><ConditionTypeCNF>0</ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension /></SPT></TriggerPoint><ApplicationServer><ServerName>sip:mmtel.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria><PublicIdentity><BarringIndication>1</BarringIndication><Identity>sip:1111111111@example.com</Identity></PublicIdentity></ServiceProfile></IMSSubscription>';
+SET impi['2222222222@example.com']['_exists'] = '';
+SET impi['2222222222@example.com']['digest_ha1'] = '0c8d55b50fadbe49d664d86a3f9ff108';
+SET impi['2222222222@example.com']['digest_realm'] = 'example.com';
+SET impi['2222222222@example.com']['public_id_sip:2222222222@example.com'] = '';
+SET impu['sip:2222222222@example.com']['_exists'] = '';
+SET impu['sip:2222222222@example.com']['ims_subscription_xml'] = '<?xml version=\'1.0\' encoding=\'UTF-8\'?><IMSSubscription xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CxDataType.xsd"><PrivateID>2222222222@example.com</PrivateID><ServiceProfile><InitialFilterCriteria><TriggerPoint><ConditionTypeCNF>0</ConditionTypeCNF><SPT><ConditionNegated>0</ConditionNegated><Group>0</Group><Method>INVITE</Method><Extension /></SPT></TriggerPoint><ApplicationServer><ServerName>sip:mmtel.example.com</ServerName><DefaultHandling>0</DefaultHandling></ApplicationServer></InitialFilterCriteria><PublicIdentity><BarringIndication>1</BarringIndication><Identity>sip:2222222222@example.com</Identity></PublicIdentity></ServiceProfile></IMSSubscription>';

@@ -1,0 +1,10 @@
+**/Dockerfile.new
+**/*.yaml
+!utils/pod.yaml
+**/rndc-key
+!utils/rndc-key
+**/start.sh
+!utils/start.sh
+**/drill
+!utils/drill
+**/aio.json

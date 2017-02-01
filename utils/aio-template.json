@@ -1,0 +1,821 @@
+{
+    "kind": "List",
+    "apiVersion": "v1",
+    "metadata": {},
+    "items": [
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-dns-service",
+              "labels": {
+                  "app": "clearwater-dns-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "protocol": "UDP",
+                      "port": 53,
+                      "targetPort": 53
+                  }
+              ],
+              "selector": {
+                  "app": "clearwater-dns-service"
+              },
+              "type": "ClusterIP"
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-bono-service",
+              "labels": {
+                  "app": "clearwater-bono-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "name": "externalsip1",
+                      "protocol": "TCP",
+                      "port": 5060,
+                      "nodePort": 5060
+                  },
+                  {
+                      "name": "externalsip2",
+                      "protocol": "UDP",
+                      "port": 5060,
+                      "nodePort": 5060
+                  },
+                  {
+                      "name": "stun",
+                      "protocol": "TCP",
+                      "port": 3478,
+                      "nodePort": 3478
+                  },
+                  {
+                      "name": "internalsip1",
+                      "protocol": "TCP",
+                      "port": 5058,
+                      "nodePort": 5058
+                  },
+                  {
+                      "name": "internalsip2",
+                      "protocol": "TCP",
+                      "port": 5062,
+                      "nodePort": 5062
+                  }
+              ],
+              "selector": {
+                  "clearwater": "bono"
+              },
+              "type": "NodePort"
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-ellis-service",
+              "labels": {
+                  "app": "clearwater-ellis-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "protocol": "TCP",
+                      "port": 80,
+                      "nodePort": 9090
+                  }
+              ],
+              "selector": {
+                  "clearwater": "ellis"
+              },
+              "type": "NodePort"
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-cassandra-service",
+              "labels": {
+                  "app": "clearwater-cassandra-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "name": "thrift",
+                      "protocol": "TCP",
+                      "port": 9160,
+                      "targetPort": 9160
+                  },
+                  {
+                      "name": "internodecomms",
+                      "protocol": "TCP",
+                      "port": 7000,
+                      "targetPort": 7000
+                  },
+                  {
+                      "name": "tlsinternodecomms",
+                      "protocol": "TCP",
+                      "port": 7001,
+                      "targetPort": 7001
+                  },
+                  {
+                      "name": "cql",
+                      "protocol": "TCP",
+                      "port": 9042,
+                      "targetPort": 9042
+                  }
+              ],
+              "selector": {
+                  "clearwater": "cassandra"
+              }
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-chronos-service",
+              "labels": {
+                  "app": "clearwater-chronos-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "protocol": "TCP",
+                      "port": 7253,
+                      "targetPort": 7253
+                  }
+              ],
+              "selector": {
+                  "clearwater": "chronos"
+              }
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-homer-service",
+              "labels": {
+                  "app": "clearwater-homer-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "protocol": "TCP",
+                      "port": 7888,
+                      "targetPort": 7888
+                  }
+              ],
+              "selector": {
+                  "clearwater": "homer"
+              }
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-homestead-service",
+              "labels": {
+                  "app": "clearwater-homestead-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "name": "rest1",
+                      "protocol": "TCP",
+                      "port": 8888,
+                      "targetPort": 8888
+                  },
+                  {
+                      "name": "rest2",
+                      "protocol": "TCP",
+                      "port": 8889,
+                      "targetPort": 8889
+                  }
+              ],
+              "selector": {
+                  "clearwater": "homestead"
+              }
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-memcached-service",
+              "labels": {
+                  "app": "clearwater-memcached-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "protocol": "TCP",
+                      "port": 11211,
+                      "targetPort": 11211
+                  }
+              ],
+              "selector": {
+                  "clearwater": "memcached"
+              }
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-ralf-service",
+              "labels": {
+                  "app": "clearwater-ralf-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "protocol": "TCP",
+                      "port": 10888,
+                      "targetPort": 10888
+                  }
+              ],
+              "selector": {
+                  "clearwater": "ralf"
+              }
+          }
+      },
+      {
+          "kind": "Service",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-sprout-service",
+              "labels": {
+                  "app": "clearwater-sprout-service"
+              }
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "name": "sip1",
+                      "protocol": "TCP",
+                      "port": 5052,
+                      "targetPort": 5052
+                  },
+                  {
+                      "name": "sip2",
+                      "protocol": "TCP",
+                      "port": 5054,
+                      "targetPort": 5054
+                  }
+              ],
+              "selector": {
+                  "clearwater": "sprout"
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-dns-service",
+              "labels": {
+                  "app": "clearwater-dns-service"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "app": "clearwater-dns-service"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "app": "clearwater-dns-service"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                        {
+                          "name": "bind-authorative",
+                          "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/bind-test",
+                          "env": [
+                            {
+                              "name": "RNDCKEY",
+                              "value": "DNSKEY"
+                            },
+                            {
+                              "name": "DNSZONE",
+                              "value": "USERZONE"
+                            },
+                            {
+                              "name": "DNS_FORWARDER_1",
+                              "value": "DNSFORWARDER1"
+                            },
+                            {
+                              "name": "DNS_FORWARDER_2",
+                              "value": "DNSFORWARDER2"
+                            }
+                          ]
+                       }
+                     ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-bono",
+              "labels": {
+                  "clearwater": "bono"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "bono"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "bono"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "bono",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/bono-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "PUBLIC_IP",
+                                      "value": "NODEHOST"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-cassandra",
+              "labels": {
+                  "clearwater": "cassandra"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "cassandra"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "cassandra"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "cassandra",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/cassandra-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-chronos",
+              "labels": {
+                  "clearwater": "chronos"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "chronos"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "chronos"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "chronos",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/chronos-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-ellis",
+              "labels": {
+                  "clearwater": "ellis"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "ellis"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "ellis"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "ellis",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/ellis-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-etcd",
+              "labels": {
+                  "clearwater": "etcd"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "etcd"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "etcd"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "etcd",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/etcd-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-homer",
+              "labels": {
+                  "clearwater": "homer"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "homer"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "homer"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "homer",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/homer-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-homestead",
+              "labels": {
+                  "clearwater": "homestead"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "homestead"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "homestead"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "homestead",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/homestead-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-memcached",
+              "labels": {
+                  "clearwater": "memcached"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "memcached"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "memcached"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "memcached",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/memcached-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-ralf",
+              "labels": {
+                  "clearwater": "ralf"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "ralf"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "ralf"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "ralf",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/ralf-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      },
+      {
+          "kind": "ReplicationController",
+          "apiVersion": "v1",
+          "metadata": {
+              "name": "clearwater-sprout",
+              "labels": {
+                  "clearwater": "sprout"
+              }
+          },
+          "spec": {
+              "replicas": 1,
+              "selector": {
+                  "clearwater": "sprout"
+              },
+              "template": {
+                  "metadata": {
+                      "labels": {
+                          "clearwater": "sprout"
+                      }
+                  },
+                  "spec": {
+                      "containers": [
+                          {
+                              "name": "sprout",
+                              "image": "REGISTRY_HOST/IMAGE_PREFIX/clearwater/sprout-test",
+                              "command": [
+                                  "/root/start.sh"
+                              ],
+                              "env": [
+                                  {
+                                      "name": "ZONE",
+                                      "value": "USERZONE"
+                                  },
+                                  {
+                                      "name": "RNDCKEY",
+                                      "value": "DNSKEY"
+                                  },
+                                  {
+                                      "name": "DNSZONE",
+                                      "value": "USERZONE"
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              }
+          }
+      }
+    ]
+}

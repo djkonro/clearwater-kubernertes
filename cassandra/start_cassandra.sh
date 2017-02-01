@@ -15,6 +15,10 @@ trap "kill_app" SIGINT SIGTERM
 $command
 sleep 2
 
+cassandra-cli -B -f /tmp/users.create_homestead_cache.casscli
+cassandra-cli -B -f /tmp/users.create_homestead_provisioning.casscli
+cqlsh -f /tmp/users.create_xdm.cqlsh 
+
 # Loop while the pidfile and the process exist
 while [ -f $pidfile ] && kill -0 $(cat $pidfile) ; do
     sleep 0.5
