@@ -164,8 +164,13 @@ function rebase_images()
 
       docker build --build-arg PROXY=$PROXY -t $image-test -f Dockerfile.new .
       TAG=$(docker images -a | grep ^$image-test | awk '{print $3}')
-      docker tag $TAG $REGISTRY_HOST/$IMAGE_PREFIX/clearwater/$image-test
-      docker push $REGISTRY_HOST/$IMAGE_PREFIX/clearwater/$image-test
+      if [ -z "$IMAGE_PREFIX" ]; then
+        docker tag $TAG $REGISTRY_HOST/clearwater/$image-test
+        docker push $REGISTRY_HOST/clearwater/$image-test
+      else
+        docker tag $TAG $REGISTRY_HOST/$IMAGE_PREFIX/clearwater/$image-test
+        docker push $REGISTRY_HOST/$IMAGE_PREFIX/clearwater/$image-test
+      fi
 
       cd ..
     done
