@@ -180,13 +180,13 @@ function rebase_images()
 
 function generate_k8s_json()
 {
-  \cp -rf utils/aio-template.json utils/aio.json
-  sed "s/DNSKEY/$DNSKEY/g" -i utils/aio.json
-  sed "s/USERZONE/$USERZONE/g" -i utils/aio.json
-  sed "s/NODEHOST/$NODEHOST/g" -i utils/aio.json
-  sed "s/DNSFORWARDER1/$DNSFORWARDER1/g" -i utils/aio.json
-  sed "s/DNSFORWARDER2/$DNSFORWARDER2/g" -i utils/aio.json
-  sed "s/REGISTRY_HOST/$REGISTRY_HOST/g" -i utils/aio.json
+  cp -rf utils/aio-template.json utils/aio.json
+  sed -ie "s/DNSKEY/$DNSKEY/g" utils/aio.json
+  sed -ie "s/USERZONE/$USERZONE/g" utils/aio.json
+  sed -ie "s/NODEHOST/$NODEHOST/g" utils/aio.json
+  sed -ie "s/DNSFORWARDER1/$DNSFORWARDER1/g" utils/aio.json
+  sed -ie "s/DNSFORWARDER2/$DNSFORWARDER2/g" utils/aio.json
+  sed -ie "s/REGISTRY_HOST/$REGISTRY_HOST/g" utils/aio.json
 
   #if no prefix set remove /
   if [ -z "$IMAGE_PREFIX" ]; then
