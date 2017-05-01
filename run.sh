@@ -187,7 +187,13 @@ function generate_k8s_json()
   sed "s/DNSFORWARDER1/$DNSFORWARDER1/g" -i utils/aio.json
   sed "s/DNSFORWARDER2/$DNSFORWARDER2/g" -i utils/aio.json
   sed "s/REGISTRY_HOST/$REGISTRY_HOST/g" -i utils/aio.json
-  sed "s/IMAGE_PREFIX/$IMAGE_PREFIX/g" -i utils/aio.json
+
+  #if no prefix set remove /
+  if [ -z "$IMAGE_PREFIX" ]; then
+    sed -ie "s/IMAGE_PREFIX\///g" utils/aio.json
+  fi
+  sed -ie "s/IMAGE_PREFIX/$IMAGE_PREFIX/g" utils/aio.json
+
 }
 
 #=== FUNCTION ==================================================================
