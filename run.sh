@@ -164,8 +164,13 @@ function rebase_images()
 
       docker build --build-arg PROXY=$PROXY -t $image-test -f Dockerfile.new .
       TAG=$(docker images -a | grep ^$image-test | awk '{print $3}')
-      docker tag $TAG $REGISTRY_HOST/$IMAGE_PREFIX/clearwater/$image-test
-      docker push $REGISTRY_HOST/$IMAGE_PREFIX/clearwater/$image-test
+      if [ -z "$IMAGE_PREFIX" ]; then
+        docker tag $TAG $REGISTRY_HOST/clearwater/$image-test
+        docker push $REGISTRY_HOST/clearwater/$image-test
+      else
+        docker tag $TAG $REGISTRY_HOST/$IMAGE_PREFIX/clearwater/$image-test
+        docker push $REGISTRY_HOST/$IMAGE_PREFIX/clearwater/$image-test
+      fi
 
       cd ..
     done
@@ -180,14 +185,20 @@ function rebase_images()
 
 function generate_k8s_json()
 {
-  \cp -rf utils/aio-template.json utils/aio.json
-  sed "s/DNSKEY/$DNSKEY/g" -i utils/aio.json
-  sed "s/USERZONE/$USERZONE/g" -i utils/aio.json
-  sed "s/NODEHOST/$NODEHOST/g" -i utils/aio.json
-  sed "s/DNSFORWARDER1/$DNSFORWARDER1/g" -i utils/aio.json
-  sed "s/DNSFORWARDER2/$DNSFORWARDER2/g" -i utils/aio.json
-  sed "s/REGISTRY_HOST/$REGISTRY_HOST/g" -i utils/aio.json
-  sed "s/IMAGE_PREFIX/$IMAGE_PREFIX/g" -i utils/aio.json
+  cp -rf utils/aio-template.json utils/aio.json
+  sed -ie "s/DNSKEY/$DNSKEY/g" utils/aio.json
+  sed -ie "s/USERZONE/$USERZONE/g" utils/aio.json
+  sed -ie "s/NODEHOST/$NODEHOST/g" utils/aio.json
+  sed -ie "s/DNSFORWARDER1/$DNSFORWARDER1/g" utils/aio.json
+  sed -ie "s/DNSFORWARDER2/$DNSFORWARDER2/g" utils/aio.json
+  sed -ie "s/REGISTRY_HOST/$REGISTRY_HOST/g" utils/aio.json
+
+  #if no prefix set remove /
+  if [ -z "$IMAGE_PREFIX" ]; then
+    sed -ie "s/IMAGE_PREFIX\///g" utils/aio.json
+  fi
+  sed -ie "s/IMAGE_PREFIX/$IMAGE_PREFIX/g" utils/aio.json
+
 }
 
 #=== FUNCTION ==================================================================
