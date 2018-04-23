@@ -1,6 +1,6 @@
 # Clearwater Kubernetes
 
-Please read [README.Metaswitch.md](https://github.com/Intel-Corp/clearwater-kubernetes/blob/master/README.Metaswitch.md) to understand docker setup, before continueing with this guide.
+Please read [README.Metaswitch.md](https://github.com/Intel-Corp/clearwater-kubernertes/blob/master/README.Metaswitch.md) to understand docker setup, before continueing with this guide.
 
 ### License/Licence
 
